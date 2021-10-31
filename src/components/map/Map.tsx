@@ -10,13 +10,20 @@ import 'ol/ol.css';
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
 
+import GeoJSON from 'ol/format/GeoJSON';
+import VectorSource from 'ol/source/Vector';
+import {bbox as bboxStrategy} from 'ol/loadingstrategy';
+import {Vector as VectorLayer} from 'ol/layer';
+import {Stroke, Style} from 'ol/style';
+import Vector from 'ol/source/Vector';
+
 export const MapContext = React.createContext<IMapContext | void>(undefined);
 
 proj4.defs("EPSG:28992","+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs");
 
 register(proj4);
 
-const extent = [646.36, 308975.28, 276050.82, 636456.31];
+const extent = [846.36, 268975.28, 288050.82, 636456.31];
 
 export class MapComponent extends React.PureComponent<MapProps, MapState> {
   private mapDivRef: React.RefObject<HTMLDivElement>;
@@ -36,12 +43,48 @@ export class MapComponent extends React.PureComponent<MapProps, MapState> {
       source: new OSM()
     })
 
+    const vectorSource = new VectorSource({
+      format: new GeoJSON(),
+      url: function (extent) {
+        return (
+          'https://geodata.nationaalgeoregister.nl/bag/wfs/v1_1?service=WFS&request=GetFeature&typeName=bag:woonplaats&count=100&startIndex=0&outputFormat=json&version=2.0.0'
+        );
+      },
+      strategy: bboxStrategy,
+    });
+
+    const vectorLayer = new VectorLayer({
+      source: vectorSource,
+      style: new Style({
+        stroke: new Stroke({
+          color: 'rgba(0, 0, 255, 1.0)',
+          width: 2,
+        }),
+      }),
+    });
+
+    const nlVectorSource = new Vector({
+      format: new GeoJSON(),
+      url: './data/geojson/netherlands.geojson',
+
+    });
+
+    const nlVectorLayer = new VectorLayer({
+      source: nlVectorSource,
+      style: new Style({
+        stroke: new Stroke({
+          color: 'rgba(0, 0, 0, 1.0)',
+          width: 2,
+        }),
+      }),
+    });
+
     const map = new Map({
-      layers: [ openStreetMap ],
+      layers: [ openStreetMap, vectorLayer, nlVectorLayer ],
       target: this.mapDivRef.current,
       view: new View({
         center: [0, 0],
-        zoom: 2,
+        zoom: 1,
         projection: 'EPSG:28992',
         extent: extent,
       }),
