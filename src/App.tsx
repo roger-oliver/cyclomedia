@@ -3,7 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
 import './App.css';
 import AppBar from './components/appBar/AppBar';
-import AppDrawer from './components/drawer/drawer';
+import AppDrawer from './components/drawer/Drawer';
 import Main from './components/main/Main';
 import { Map } from './components/map'
 
