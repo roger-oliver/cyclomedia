@@ -1,16 +1,10 @@
-import { styled, Theme } from '@mui/material/styles';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import { styled } from '@mui/material/styles';
+import MuiAppBar from '@mui/material/AppBar';
 import { IconButton, Toolbar, Typography } from '@mui/material';
 import {
   Menu as MenuIcon,
 } from '@mui/icons-material';
-
-interface AppBarProps extends MuiAppBarProps {
-  drawerOpen?: boolean;
-  drawerWidth: number;
-  theme: Theme;
-  handleDrawerOpen: () => void;
-}
+import type { AppBarProps } from './AppBar.d'
 
 const AppBar: React.FC<AppBarProps> = ({ drawerOpen, drawerWidth, theme, handleDrawerOpen }) => {
 

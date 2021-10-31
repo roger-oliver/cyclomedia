@@ -1,11 +1,6 @@
-import { styled, Theme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
+import type { MainSet } from './Main.d';
 
-type MainSet = {
-  drawerWidth: number;
-  drawerOpen: boolean;
-  handleDrawerClose: () => void;
-  theme: Theme;
-}
 
 const Main: React.FC<MainSet> = ({ theme, drawerOpen, drawerWidth, children }) => {
 

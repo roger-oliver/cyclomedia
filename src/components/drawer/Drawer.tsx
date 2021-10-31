@@ -1,4 +1,4 @@
-import { styled, Theme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import {
   Drawer,
   IconButton,
@@ -14,13 +14,7 @@ import {
   Inbox as InboxIcon,
   Mail as MailIcon
 } from '@mui/icons-material';
-
-type DrawerSet = {
-  drawerWidth: number;
-  drawerOpen: boolean;
-  handleDrawerClose: () => void;
-  theme: Theme;
-}
+import type { DrawerSet } from './Drawer.d';
 
 const AppDrawer: React.FC<DrawerSet> = ({ drawerWidth, drawerOpen, handleDrawerClose, theme }) => {
   
