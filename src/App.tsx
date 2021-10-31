@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Box, CssBaseline } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import React, { useState } from 'react';
 import './App.css';
+import AppBar from './components/appBar/AppBar';
+import AppDrawer from './components/drawer/drawer';
+import Main from './components/main/Main';
+import { Map } from './components/map'
 
 function App() {
+
+  const drawerWidth = 240;
+
+  const theme = useTheme();
+  const [open, setOpen] = useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <AppBar drawerOpen={open} drawerWidth={drawerWidth} theme={theme} handleDrawerOpen={handleDrawerOpen}/>
+        <AppDrawer drawerOpen={open} drawerWidth={drawerWidth} theme={theme} handleDrawerClose={handleDrawerClose} />
+        <Main drawerOpen={open} drawerWidth={drawerWidth} theme={theme} handleDrawerClose={handleDrawerClose}>
+          <Map />
+        </Main>
+      </Box>
+    </>
   );
 }
 
