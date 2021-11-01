@@ -68,7 +68,7 @@ export class MapComponent extends React.PureComponent<MapProps, MapState> {
 
     const nlVectorSource = new Vector({
       format: new GeoJSON(),
-      url: './data/geojson/netherlands.geojson',
+      url: './cyclomedia/data/geojson/netherlands.geojson',
 
     });
 
