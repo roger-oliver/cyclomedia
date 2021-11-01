@@ -3,9 +3,9 @@ import { MapProps, MapState, IMapContext } from './Map.d';
 import View from 'ol/View';
 import OSM from 'ol/source/OSM';
 import Map from 'ol/Map';
-import "./map.css";
 import {Tile as TileLayer} from 'ol/layer';
 import 'ol/ol.css';
+import "./map.css";
 
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
@@ -16,6 +16,9 @@ import {bbox as bboxStrategy} from 'ol/loadingstrategy';
 import {Vector as VectorLayer} from 'ol/layer';
 import {Stroke, Style} from 'ol/style';
 import Vector from 'ol/source/Vector';
+
+import { ScaleLine, OverviewMap, defaults, MousePosition } from 'ol/control';
+import {createStringXY} from 'ol/coordinate';
 
 export const MapContext = React.createContext<IMapContext | void>(undefined);
 
@@ -79,15 +82,39 @@ export class MapComponent extends React.PureComponent<MapProps, MapState> {
       }),
     });
 
+    const scaleLineControl = new ScaleLine({
+      units: 'metric',
+      minWidth: 200,
+      bar: true,
+      steps: 4,
+      text: true
+    });
+  
+    const overViewMapControl = new OverviewMap({
+      tipLabel: 'Netherlands Overview Map',
+      layers: [
+        new TileLayer({
+          source: new OSM()
+        })
+      ]
+    });
+
+    const mousePositionControl = new MousePosition({
+      coordinateFormat: createStringXY(4),
+      projection: 'EPSG:28992',
+
+    });
+
     const map = new Map({
       layers: [ openStreetMap, vectorLayer, nlVectorLayer ],
       target: this.mapDivRef.current,
       view: new View({
-        center: [0, 0],
+        center: [142892.19, 470783.87],
         zoom: 1,
         projection: 'EPSG:28992',
         extent: extent,
       }),
+      controls: defaults({attribution: false}).extend([scaleLineControl, overViewMapControl, mousePositionControl])
     });
 
     const mapContext: IMapContext = { map };
