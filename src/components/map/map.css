@@ -17,12 +17,12 @@
 
 .ol-mouse-position {
   color: black;
-  background-color: rgba(0, 0, 0, 0.3);
-  font-size: small;
+  font-size: 14px;
+  text-shadow: -2px 0 #FFFFFF, 0 2px #FFFFFF, 2px 0 #FFFFFF, 0 -2px #FFFFFF;
   width: 180px;
   top: unset;
   text-align: right;
-  bottom: 2em;
+  bottom: 1.5em;
   right: 8px;
   box-sizing: inherit;
 }

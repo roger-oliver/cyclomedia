@@ -4,19 +4,15 @@ import {
   IconButton,
   Divider,
   List,
-  ListItem,
-  ListItemIcon,
-  ListItemText
 } from '@mui/material';
 import {
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
-  Inbox as InboxIcon,
-  Mail as MailIcon
 } from '@mui/icons-material';
+
 import type { DrawerSet } from './Drawer.d';
 
-const AppDrawer: React.FC<DrawerSet> = ({ drawerWidth, drawerOpen, handleDrawerClose, theme }) => {
+const AppDrawer: React.FC<DrawerSet> = ({ drawerWidth, drawerOpen, handleDrawerClose, theme, children }) => {
   
   const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
@@ -51,26 +47,9 @@ const AppDrawer: React.FC<DrawerSet> = ({ drawerWidth, drawerOpen, handleDrawerC
     </DrawerHeader>
     <Divider />
     <List>
-      {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-        <ListItem button key={text}>
-          <ListItemIcon>
-            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-          </ListItemIcon>
-          <ListItemText primary={text} />
-        </ListItem>
-      ))}
+      {children}
     </List>
     <Divider />
-    <List>
-      {['All mail', 'Trash', 'Spam'].map((text, index) => (
-        <ListItem button key={text}>
-          <ListItemIcon>
-            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-          </ListItemIcon>
-          <ListItemText primary={text} />
-        </ListItem>
-      ))}
-    </List>
   </Drawer>
   );
 };
