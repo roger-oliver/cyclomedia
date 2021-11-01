@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/cyclomedia/static/css/main.faafe54f.chunk.css",
-    "main.js": "/cyclomedia/static/js/main.aef09dd1.chunk.js",
-    "main.js.map": "/cyclomedia/static/js/main.aef09dd1.chunk.js.map",
+    "main.js": "/cyclomedia/static/js/main.66058be8.chunk.js",
+    "main.js.map": "/cyclomedia/static/js/main.66058be8.chunk.js.map",
     "runtime-main.js": "/cyclomedia/static/js/runtime-main.6130091b.js",
     "runtime-main.js.map": "/cyclomedia/static/js/runtime-main.6130091b.js.map",
     "static/css/2.770e1552.chunk.css": "/cyclomedia/static/css/2.770e1552.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.770e1552.chunk.css",
     "static/js/2.aae2ef6f.chunk.js",
     "static/css/main.faafe54f.chunk.css",
-    "static/js/main.aef09dd1.chunk.js"
+    "static/js/main.66058be8.chunk.js"
   ]
 }
