@@ -58,7 +58,7 @@ const createLayer = (layerAvailable: LayersAvailable, colour: Colours, width: nu
 
     const nlVectorSource = new VectorSource({
       format: new GeoJSON(),
-      url: './cyclomedia/data/geojson/netherlands.geojson',
+      url: './data/geojson/netherlands.geojson',
     
     });
     return {
