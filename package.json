@@ -2,7 +2,7 @@
   "name": "cyclomedia",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/roger-oliver/cyclomedia",
+  "homepage": "https://roger-oliver.github.io/cyclomedia",
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
