@@ -10,13 +10,6 @@ import "./map.css";
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
 
-import GeoJSON from 'ol/format/GeoJSON';
-import VectorSource from 'ol/source/Vector';
-import {bbox as bboxStrategy} from 'ol/loadingstrategy';
-import {Vector as VectorLayer} from 'ol/layer';
-import {Stroke, Style} from 'ol/style';
-import Vector from 'ol/source/Vector';
-
 import { ScaleLine, OverviewMap, defaults, MousePosition } from 'ol/control';
 import {createStringXY} from 'ol/coordinate';
 
@@ -28,7 +21,7 @@ register(proj4);
 
 const extent = [846.36, 268975.28, 288050.82, 636456.31];
 
-export class MapComponent extends React.PureComponent<MapProps, MapState> {
+export class MapComponent extends React.Component<MapProps, MapState> {
   private mapDivRef: React.RefObject<HTMLDivElement>;
   state: MapState = {};
 
@@ -43,44 +36,11 @@ export class MapComponent extends React.PureComponent<MapProps, MapState> {
     }
 
     const openStreetMap = new TileLayer({
-      source: new OSM()
+      source: new OSM(),
+      zIndex: 1
     })
 
-    const vectorSource = new VectorSource({
-      format: new GeoJSON(),
-      url: function (extent) {
-        return (
-          'https://geodata.nationaalgeoregister.nl/bag/wfs/v1_1?service=WFS&request=GetFeature&typeName=bag:woonplaats&count=100&startIndex=0&outputFormat=json&version=2.0.0'
-        );
-      },
-      strategy: bboxStrategy,
-    });
-
-    const vectorLayer = new VectorLayer({
-      source: vectorSource,
-      style: new Style({
-        stroke: new Stroke({
-          color: 'rgba(0, 0, 255, 1.0)',
-          width: 2,
-        }),
-      }),
-    });
-
-    const nlVectorSource = new Vector({
-      format: new GeoJSON(),
-      url: './cyclomedia/data/geojson/netherlands.geojson',
-
-    });
-
-    const nlVectorLayer = new VectorLayer({
-      source: nlVectorSource,
-      style: new Style({
-        stroke: new Stroke({
-          color: 'rgba(0, 0, 0, 1.0)',
-          width: 2,
-        }),
-      }),
-    });
+    this.props.vectorLayers?.push(openStreetMap)
 
     const scaleLineControl = new ScaleLine({
       units: 'metric',
@@ -106,7 +66,7 @@ export class MapComponent extends React.PureComponent<MapProps, MapState> {
     });
 
     const map = new Map({
-      layers: [ openStreetMap, vectorLayer, nlVectorLayer ],
+      layers: this.props.vectorLayers,
       target: this.mapDivRef.current,
       view: new View({
         center: [142892.19, 470783.87],
