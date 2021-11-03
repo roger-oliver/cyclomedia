@@ -11,7 +11,7 @@ const AppBar: React.FC<AppBarProps> = ({ drawerOpen, drawerWidth, theme, handleD
 
   const StyledAppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
-  })<any>(({ theme, open, drawerWidth }) => ({
+  })<any>(({ theme, open }) => ({
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -27,7 +27,7 @@ const AppBar: React.FC<AppBarProps> = ({ drawerOpen, drawerWidth, theme, handleD
   }));
 
   return (
-    <StyledAppBar position="fixed" open={drawerOpen} drawerWidth={drawerWidth} theme={theme}>
+    <StyledAppBar position="fixed" open={drawerOpen} theme={theme}>
       <Toolbar>
         <IconButton
           color="inherit"

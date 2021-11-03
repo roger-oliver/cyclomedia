@@ -55,10 +55,10 @@ const getTypeNameFromLayerAvailable = (layerAvailable: LayersAvailable): Feature
 
 const createLayer = (layerAvailable: LayersAvailable, colour: Colours, width: number = 2): IVectorLayer => {
   if(layerAvailable === LayersAvailable.NETHERLANDS_PROVINCES) {
-
+    const path = process.env.NODE_ENV === 'development' ? './cyclomedia/data' : './data';
     const nlVectorSource = new VectorSource({
       format: new GeoJSON(),
-      url: './data/geojson/netherlands.geojson',
+      url: `${path}/geojson/netherlands.geojson`,
     
     });
     return {

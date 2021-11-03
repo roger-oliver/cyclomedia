@@ -5,8 +5,7 @@ import type { MainSet } from './Main.d';
 const Main: React.FC<MainSet> = ({ theme, drawerOpen, drawerWidth, children }) => {
 
   const MainContent = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
-    open?: boolean; drawerWidth: number;
-  }>(({ theme, open, drawerWidth }) => ({
+    open?: boolean }>(({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(0),
     transition: theme.transitions.create('margin', {
@@ -33,7 +32,7 @@ const Main: React.FC<MainSet> = ({ theme, drawerOpen, drawerWidth, children }) =
   }));
 
   return (
-    <MainContent open={drawerOpen} theme={theme} drawerWidth={drawerWidth}>
+    <MainContent open={drawerOpen} theme={theme} >
       <DrawerHeader theme={theme} />
         {children}
     </MainContent>
