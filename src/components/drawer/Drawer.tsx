@@ -13,7 +13,7 @@ import {
 import type { DrawerSet } from './Drawer.d';
 
 const AppDrawer: React.FC<DrawerSet> = ({ drawerWidth, drawerOpen, handleDrawerClose, theme, children }) => {
-  
+
   const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
@@ -22,6 +22,7 @@ const AppDrawer: React.FC<DrawerSet> = ({ drawerWidth, drawerOpen, handleDrawerC
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   }));
+
   return (
     <Drawer
     sx={{
@@ -32,7 +33,6 @@ const AppDrawer: React.FC<DrawerSet> = ({ drawerWidth, drawerOpen, handleDrawerC
         boxSizing: 'border-box',
       },
     }}
-    variant="persistent"
     anchor="left"
     open={drawerOpen}
   >

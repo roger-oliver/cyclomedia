@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import AppBar from './components/appBar/AppBar';
 import AppDrawer from './components/drawer/Drawer';
-import Main from './components/main/Main';
-import { Map } from './components/map'
+import { MapComp as Map } from './components/map'
 import LayerComponent from './components/map/layers/Layer';
 import { createAllAvailableLayers } from './components/map/layers/layers.config';
 
@@ -17,6 +16,7 @@ function App() {
   const [open, setOpen] = useState(false);
 
   const [ vectorLayers, setVectorLayers ] = useState<any>([]);
+  const [ layers, setLayers ] = useState<any>([]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -36,8 +36,14 @@ function App() {
   }
 
   useEffect(() => {
-    setVectorLayers(createAllAvailableLayers());
+    const vectorLayersInit = createAllAvailableLayers();
+    setVectorLayers(vectorLayersInit);
   }, [])
+
+  useEffect(() => {
+    const layersInit = vectorLayers.map((layer: any) => layer.layer);
+    setLayers(layersInit);
+  }, [vectorLayers])
 
   return (
     <>
@@ -51,9 +57,7 @@ function App() {
             ))
           }
         </AppDrawer>
-        <Main drawerOpen={open} drawerWidth={drawerWidth} theme={theme} handleDrawerClose={handleDrawerClose}>
-          <Map vectorLayers={vectorLayers.map((layer: any) => layer.layer)} controls={[]} />
-        </Main>
+        {layers && <Map vectorLayers={layers} controls={[]} />}
       </Box>
     </>
   );

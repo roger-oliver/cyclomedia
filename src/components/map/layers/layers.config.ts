@@ -110,10 +110,10 @@ const createAllAvailableLayers = (): IVectorLayer[] => {
   const layers: IVectorLayer[] = [];
   
   layers.push(createLayer(LayersAvailable.NETHERLANDS_PROVINCES, Colours.BLACK));
-  layers.push(createLayer(LayersAvailable.BAG_WOONPLAATS, Colours.BLUE));
-  layers.push(createLayer(LayersAvailable.BAG_STANDPLAATS, Colours.RED));
-  layers.push(createLayer(LayersAvailable.BAG_PAND, Colours.GREEN));
-  layers.push(createLayer(LayersAvailable.BAG_LIGPLAATS, Colours.ORANGE));
+  // layers.push(createLayer(LayersAvailable.BAG_WOONPLAATS, Colours.BLUE));
+  // layers.push(createLayer(LayersAvailable.BAG_STANDPLAATS, Colours.RED));
+  // layers.push(createLayer(LayersAvailable.BAG_PAND, Colours.GREEN));
+  // layers.push(createLayer(LayersAvailable.BAG_LIGPLAATS, Colours.ORANGE));
 
   return layers;
 }

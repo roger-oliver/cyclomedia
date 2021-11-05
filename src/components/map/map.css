@@ -1,6 +1,6 @@
 .map {
   background-color: #282c34;
-  min-height: 93.5vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,6 +9,7 @@
   color: white;
   height: 1px;
   width: 100%;
+  padding-top: 64px;
 }
 
 .ol-overviewmap {
